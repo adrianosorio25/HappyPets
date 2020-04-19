@@ -1,0 +1,51 @@
+.mat-accordion .mat-expansion-panel:last-of-type {
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+.mat-accordion .mat-expansion-panel:first-of-type {
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+}
+
+// User panel
+.user-panel {
+    padding: 16px 0;
+}
+
+.user-panel-avatar {
+    margin-bottom: 8px;
+    width: 64px;
+    height: 64px;
+    border-radius: 999px;
+    transition: swift-ease-out(transform);
+}
+
+.user-panel-name,
+.user-panel-email {
+    margin-top: 0;
+    margin-bottom: 3px;
+    font-weight: normal;
+}
+
+.user-panel-name,
+.user-panel-email,
+.user-panel-icons {
+    opacity: 1;
+    transition: swift-ease-out(opacity);
+}
+
+.user-panel-icons {
+    white-space: nowrap;
+    .mat-icon-button {
+        width: 24px;
+        height: 24px;
+        line-height: 24px;
+        .mat-icon {
+            width: 18px;
+            height: 18px;
+            font-size: 18px;
+            line-height: 18px;
+        }
+    }
+}

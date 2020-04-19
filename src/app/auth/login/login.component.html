@@ -1,0 +1,41 @@
+<div class="container">
+    <mat-card>
+        <mat-card-header>
+            <img mat-card-image src="../../assets/img/logo.png" alt="logo HappyPets">
+        </mat-card-header>
+        <mat-card-content>
+            <form #f="ngForm" class="form" (ngSubmit)="ingresar(f)">
+                <mat-form-field>
+                    <mat-label>Correo</mat-label>
+                    <input class="form-control" matInput [ngModel]="email" name="email" placeholder="ejemplo@email.com" required>
+                </mat-form-field>
+
+                <mat-form-field>
+                    <mat-label>Contraseña</mat-label>
+                    <input ngModel name="password" matInput [type]="hide ? 'password' : 'text'" required>
+                    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </mat-form-field>
+                <br>
+                <div>
+                    <section>
+                        <mat-checkbox [(ngModel)]="recuerdame" name="recuerdame" indeterminate="boolean">Recuerdame</mat-checkbox>
+                    </section>
+                </div>
+                <br>
+                <div>
+                    <button [disabled]="f.invalid" type="submit" class="btn" mat-raised-button color="primary">Ingresar</button>
+                </div>
+                <br>
+                <div>
+                    <button class="btnGoogle" mat-raised-button color="warn"><mat-icon>g_translate</mat-icon></button>
+                </div>
+                <br>
+                <div class="create">
+                    No tienes una cuenta? <a routerLink="/register"><b>Crear Cuenta</b></a>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>
