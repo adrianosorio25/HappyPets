@@ -5,6 +5,7 @@ import { URL_SERVICIOS } from '../../config/config';
 import { map } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class UsuarioService {
   usuario: Usuario;
   token: string;
 
-  constructor( public http: HttpClient, public router: Router) {
+  constructor( public http: HttpClient, public router: Router, private _snackbar: MatSnackBar) {
     this.cargarStorage();
   }
 
@@ -55,6 +56,19 @@ export class UsuarioService {
     this.router.navigate(['/login']);
   }
 
+  loginGoogle(token: string) {
+
+    const url = URL_SERVICIOS + '/login/google';
+
+    return this.http.post( url, {token} )
+      .pipe(map( (resp: any) => {
+        this.guardarStorage(resp.id, resp.token, resp.usuario);
+
+        this.usuario = resp.usuario;
+        return true;
+      }));
+  }
+
   login( usuario: Usuario, recordar: boolean = false) {
 
     if ( recordar ) {
@@ -67,9 +81,10 @@ export class UsuarioService {
 
     return this.http.post( url, usuario)
         .pipe(map( (resp: any) => {
-          localStorage.setItem('id', resp.id);
-          localStorage.setItem('token', resp.token);
-          localStorage.setItem('usuario', JSON.stringify(resp.usuario));
+          this._snackbar.open('Bienvenido', resp.usuario.nombre, {
+            duration: 2900
+          });
+          this.guardarStorage(resp.id, resp.token, resp.usuario);
 
           this.usuario = resp.usuario;
 

@@ -14,7 +14,7 @@ const PagesRoutes: Routes = [
   {
     path: '',
     component: NavComponent,
-    // canActivate: [ LoginGuardGuard ],
+    canActivate: [ LoginGuardGuard ],
     children: [
       { path: 'dashboard', component: DashboardComponent, data: { titulo: 'Dashboard'} },
       { path: 'services', component: ServiciosComponent, data: { titulo: 'Servicios'} },

@@ -13,11 +13,11 @@ import {
   declarations: [],
   providers: [
     SidebarService,
-    UsuarioService
+    UsuarioService,
+    LoginGuardGuard
   ],
   imports: [
     CommonModule,
-    LoginGuardGuard,
     HttpClientModule
   ]
 })
