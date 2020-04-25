@@ -11,7 +11,6 @@ import { AppRouting } from './app.routing';
 
 // Componentes
 import { AppComponent } from './app.component';
-import { PipesModule } from './pipes/pipes.module';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
@@ -23,6 +22,7 @@ import { SharedModule } from './shared/shared.module';
     BrowserAnimationsModule,
     AuthModule,
     PagesModule,
+    SharedModule,
     HttpClientModule,
     AppRouting
   ],

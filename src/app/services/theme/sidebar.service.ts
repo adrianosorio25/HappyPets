@@ -20,7 +20,8 @@ export class SidebarService {
     {
       titulo: 'Páginas',
       submenu: [
-        { titulo: 'Servicios', url: '/services', icon: 'settings'}
+        { titulo: 'Servicios', url: '/services', icon: 'settings'},
+        { titulo: 'Usuarios', url: '/users-setting', icon: 'people'}
       ]
     }
   ];

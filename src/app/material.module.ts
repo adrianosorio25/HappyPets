@@ -24,8 +24,18 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatTreeModule} from '@angular/material/tree';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatSortModule} from '@angular/material/sort';
+import {MatDialogModule} from '@angular/material/dialog';
 
 const myModule = [
+    MatDialogModule,
+    MatSortModule,
+    MatChipsModule,
+    MatProgressSpinnerModule,
+    MaterialFileInputModule,
     FlexLayoutModule,
     MatExpansionModule,
     MatTreeModule,

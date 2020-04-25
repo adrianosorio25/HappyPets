@@ -1,11 +1,14 @@
 <div class="profile-card">
-    <img class="avatar" [src]="usuario.img | imagen" alt="avatar" />
+    <img class="avatar" *ngIf="!imagenTempotal" [src]="usuario.img | imagen" />
+    <img class="avatar" *ngIf="imagenTempotal" [src]="imagenTempotal" />
 
-    <h2>
-        {{usuario.nombre}}
-    </h2>
+    <mat-form-field>
+        <ngx-mat-file-input (change)="seleccionImagen($event.target.files[0])" type="file" placeholder="Seleccione una imagen"></ngx-mat-file-input>
+        <mat-icon matSuffix color="primary" style="cursor: pointer;">attach_file</mat-icon>
+    </mat-form-field>
 
-    <label>
-        {{usuario.email}}
-    </label>
+    <button (click)="cambiarImagen()" [disabled]="!imagenSubir" type="button" mat-button mat-raised-button color="primary">
+        <mat-icon mat-icon-button>save</mat-icon>
+        Actualizar Foto
+    </button>
 </div>

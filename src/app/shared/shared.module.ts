@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { NopagefoundComponent } from './nopagefound/nopagefound.component';
 import { NavComponent } from './nav/nav.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
+import { ModalUploadComponent } from './modal-upload/modal-upload.component';
 
 
 
@@ -16,12 +17,14 @@ import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
   declarations: [
     NopagefoundComponent,
     NavComponent,
-    BreadcrumbsComponent
+    BreadcrumbsComponent,
+    ModalUploadComponent
   ],
   exports: [
     NopagefoundComponent,
     NavComponent,
-    BreadcrumbsComponent
+    BreadcrumbsComponent,
+    ModalUploadComponent
   ],
   imports: [
     CommonModule,
