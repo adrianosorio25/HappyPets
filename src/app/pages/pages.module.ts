@@ -4,6 +4,7 @@ import { MaterialModule } from '../material.module';
 import { CommonModule } from '@angular/common';
 import { ThemeModule } from '../theme/theme.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 // Rutas
 import { PagesRouting } from './pages.routing';
@@ -19,7 +20,7 @@ import { ProfileDetailsComponent } from './profile/profile-details/profile-detai
 import { ProfilePasswordComponent } from './profile/profile-password/profile-password.component';
 import { MantenimientoUsuariosComponent } from './mantenimiento-usuarios/mantenimiento-usuarios.component';
 import { MantenimientoModalComponent } from './mantenimiento-usuarios/mantenimiento-modal.component';
-import { RouterModule } from '@angular/router';
+import { BusquedaComponent } from './busqueda/busqueda.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { RouterModule } from '@angular/router';
     ProfileDetailsComponent,
     ProfilePasswordComponent,
     MantenimientoUsuariosComponent,
-    MantenimientoModalComponent
+    MantenimientoModalComponent,
+    BusquedaComponent
   ],
   imports: [
     CommonModule,

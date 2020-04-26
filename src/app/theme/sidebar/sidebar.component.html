@@ -3,7 +3,7 @@
 
         <app-user-panel></app-user-panel>
 
-        <!-- <mat-divider></mat-divider> -->
+        <!-- menu estatico -->
         <mat-accordion>
             <mat-expansion-panel>
                 <mat-expansion-panel-header *ngFor="let home of _sidebar.home">
@@ -22,7 +22,7 @@
             </mat-expansion-panel>
         </mat-accordion>
 
-        <!-- <mat-divider></mat-divider> -->
+        <!-- menu dinamico backend -->
         <mat-accordion>
             <mat-expansion-panel>
                 <mat-expansion-panel-header *ngFor="let menu of _sidebar.menu">

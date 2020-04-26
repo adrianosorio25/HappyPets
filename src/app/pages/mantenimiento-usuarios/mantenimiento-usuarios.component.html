@@ -15,7 +15,7 @@
         <!-- Imagen Column -->
         <ng-container matColumnDef="imagen">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Imagen </th>
-            <td (click)="imagenDialog()" style="width: 70px; cursor: pointer;" mat-cell *matCellDef="let usuario">
+            <td style="width: 70px; cursor: pointer;" mat-cell *matCellDef="let usuario">
                 <img [src]="usuario.img | imagen" class="avatar">
             </td>
         </ng-container>

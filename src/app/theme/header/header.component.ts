@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import * as screenfull from 'screenfull';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -14,9 +15,13 @@ export class HeaderComponent implements OnInit {
     return screenfull as screenfull.Screenfull;
   }
 
-  constructor() { }
+  constructor(public router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  buscar( termino: string ) {
+    this.router.navigate(['/busqueda', termino]);
   }
 
   toggleSideBar() {

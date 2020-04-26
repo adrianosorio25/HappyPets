@@ -4,9 +4,11 @@
     </button>
     <span fxFlex></span>
 
-    <button mat-icon-button class="matero-toolbar-button">
-      <mat-icon>search</mat-icon>
-    </button>
+    <mat-form-field style="font-size: 16px;">
+        <mat-label>
+            <mat-icon>search</mat-icon>Buscar</mat-label>
+        <input matInput #input (keyup.enter)="buscar(input.value)">
+    </mat-form-field>
 
     <button mat-icon-button class="matero-toolbar-button" fxHide.lt-sm (click)="toggleFullscreen()">
     <mat-icon>fullscreen</mat-icon>

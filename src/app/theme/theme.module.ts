@@ -13,7 +13,6 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { UserPanelComponent } from './sidebar/user-panel.component';
 import { HeaderComponent } from './header/header.component';
 
-
 @NgModule({
   declarations: [
     HeaderComponent,

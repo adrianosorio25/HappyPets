@@ -28,10 +28,6 @@ export class MantenimientoUsuariosComponent implements OnInit {
     this.cargarUsuarios();
   }
 
-  imagenDialog() {
-    console.log('imagenDialogo');
-  }
-
   openDialog() {
     console.log('Dialogo');
     this.dialog.open(MantenimientoModalComponent);

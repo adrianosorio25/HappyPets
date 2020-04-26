@@ -4,7 +4,6 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/login/register.component';
 import { NopagefoundComponent } from './shared/nopagefound/nopagefound.component';
 
-
 const AppRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },

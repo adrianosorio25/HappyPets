@@ -6,7 +6,9 @@ import {
   SidebarService,
   UsuarioService,
   LoginGuardGuard,
-  SubirArchivoService
+  SubirArchivoService,
+  AdminGuard,
+  VerificaTokenGuard
 } from './service.index';
 
 
@@ -16,7 +18,9 @@ import {
     SidebarService,
     UsuarioService,
     LoginGuardGuard,
-    SubirArchivoService
+    AdminGuard,
+    SubirArchivoService,
+    VerificaTokenGuard
   ],
   imports: [
     CommonModule,

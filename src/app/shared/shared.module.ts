@@ -6,23 +6,21 @@ import { ThemeModule } from '../theme/theme.module';
 import { RouterModule } from '@angular/router';
 
 // Componentes
-import { NopagefoundComponent } from './nopagefound/nopagefound.component';
 import { NavComponent } from './nav/nav.component';
+import { NopagefoundComponent } from './nopagefound/nopagefound.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { ModalUploadComponent } from './modal-upload/modal-upload.component';
 
-
-
 @NgModule({
   declarations: [
-    NopagefoundComponent,
     NavComponent,
+    NopagefoundComponent,
     BreadcrumbsComponent,
     ModalUploadComponent
   ],
   exports: [
-    NopagefoundComponent,
     NavComponent,
+    NopagefoundComponent,
     BreadcrumbsComponent,
     ModalUploadComponent
   ],
