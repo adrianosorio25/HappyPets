@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Usuario } from 'src/app/models/usuario.model';
 import { UsuarioService } from 'src/app/services/service.index';
 import Swal from 'sweetalert2';
 import { MantenimientoModalComponent } from './mantenimiento-modal.component';
 import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-mantenimiento-usuarios',
@@ -24,13 +25,21 @@ export class MantenimientoUsuariosComponent implements OnInit {
               public dialog: MatDialog) {
   }
 
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+
   ngOnInit(): void {
     this.cargarUsuarios();
   }
 
   openDialog() {
-    console.log('Dialogo');
-    this.dialog.open(MantenimientoModalComponent);
+    this.dialog.open(MantenimientoModalComponent, {
+      data: { usuarios: this.usuarios }
+    }).afterClosed().subscribe(result => {
+      this._usuarioService.cargarUsuarios()
+        .subscribe( resp => {
+          this.cargarUsuarios();
+        });
+    });
   }
 
   cargarUsuarios() {
@@ -90,9 +99,8 @@ export class MantenimientoUsuariosComponent implements OnInit {
 
   }
 
-  guardarUsuario(usuario: Usuario){
-
-    this._usuarioService.actualizarusuario(usuario)
+  actualizarUsuario(usuario: Usuario){
+    this._usuarioService.actualizarUsuario(usuario)
       .subscribe();
   }
 

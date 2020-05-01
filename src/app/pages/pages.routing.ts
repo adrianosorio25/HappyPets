@@ -13,6 +13,7 @@ import { ServiciosComponent } from './servicios/servicios.component';
 import { AccountProfileComponent } from './profile/account-profile/account-profile.component';
 import { MantenimientoUsuariosComponent } from './mantenimiento-usuarios/mantenimiento-usuarios.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 const PagesRoutes: Routes = [
   {
@@ -28,6 +29,7 @@ const PagesRoutes: Routes = [
       },
       { path: 'services', component: ServiciosComponent, data: { titulo: 'Servicios'} },
       { path: 'profile', component: AccountProfileComponent, data: { titulo: 'Perfil'} },
+      { path: 'perfil', component: PerfilComponent, data: { titulo: 'Perfil'} },
       { path: 'busqueda/:termino', component: BusquedaComponent, data: { titulo: 'Buscador'} },
       // mantenimiento
       {

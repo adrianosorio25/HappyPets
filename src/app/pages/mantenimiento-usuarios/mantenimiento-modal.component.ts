@@ -46,7 +46,6 @@ export class MantenimientoModalComponent implements OnInit {
     this.forma = new FormGroup({
       nombre: new FormControl( null, Validators.required ),
       correo: new FormControl( null, [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')] ),
-      role: new FormControl( null, Validators.required),
       password: new FormControl( null, Validators.required ),
       password2: new FormControl( null, Validators.required )
     }, { validators: this.sonIguales( 'password', 'password2') });
@@ -70,7 +69,7 @@ export class MantenimientoModalComponent implements OnInit {
     };
   }
 
-  registrarUsuario() {
+  public registrarUsuario(): void {
 
     if ( this.forma.invalid ) {
       return;
@@ -82,7 +81,6 @@ export class MantenimientoModalComponent implements OnInit {
     const usuario  = new Usuario(
       this.forma.value.nombre,
       this.forma.value.correo,
-      this.forma.value.role,
       this.forma.value.password
     );
 

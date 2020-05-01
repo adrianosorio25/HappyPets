@@ -39,7 +39,7 @@ export class ProfilePasswordComponent implements OnInit {
       this.usuario.password = usuario.password;
     }
 
-    this._usuarioService.actualizarusuario(this.usuario)
+    this._usuarioService.actualizarUsuario(this.usuario)
       .subscribe();
   }
 

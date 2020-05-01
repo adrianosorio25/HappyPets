@@ -21,6 +21,9 @@ import { ProfilePasswordComponent } from './profile/profile-password/profile-pas
 import { MantenimientoUsuariosComponent } from './mantenimiento-usuarios/mantenimiento-usuarios.component';
 import { MantenimientoModalComponent } from './mantenimiento-usuarios/mantenimiento-modal.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
+import { PerfilComponent } from './perfil/perfil.component';
+import { AddServiciosComponent } from './servicios/dialog/add/add-servicios.component';
+import { EditServiciosComponent } from './servicios/dialog/edit/edit-servicios.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,10 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
     ProfilePasswordComponent,
     MantenimientoUsuariosComponent,
     MantenimientoModalComponent,
-    BusquedaComponent
+    BusquedaComponent,
+    PerfilComponent,
+    AddServiciosComponent,
+    EditServiciosComponent
   ],
   imports: [
     CommonModule,

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { URL_SERVICIOS } from '../../config/config';
 import { Usuario } from '../../models/usuario.model';
+import { Servicio } from '../../models/servicio.model';
 
 @Component({
   selector: 'app-busqueda',
@@ -10,6 +11,10 @@ import { Usuario } from '../../models/usuario.model';
   styles: [`
     mat-card{
       margin-right: 1%;
+    }
+    mat-icon {
+      cursor: pointer;
+      color: #3f51b5;
     }
     table {
       width: 100%;
@@ -30,7 +35,10 @@ export class BusquedaComponent implements OnInit {
 
   displayedColumns: string[] = ['imagen', 'nombre', 'edit'];
 
+  displayedColumnsService: string[] = ['nombre', 'descripcion', 'edit'];
+
   usuarios: Usuario[] = [];
+  servicios: Servicio[] = [];
 
   constructor(public activateRoute: ActivatedRoute, public http: HttpClient) {
     activateRoute.params
@@ -51,6 +59,7 @@ export class BusquedaComponent implements OnInit {
     this.http.get(url)
         .subscribe( (resp: any) => {
           this.usuarios = resp.usuarios;
+          this.servicios = resp.servicios;
         });
   }
 

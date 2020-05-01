@@ -133,12 +133,9 @@ export class UsuarioService {
 
     return this.http.post( url, usuario )
       .pipe(map( (resp: any) => {
-        Swal.fire({
-          position: 'top-end',
-          icon: 'success',
-          title: 'Usuario Creado',
-          showConfirmButton: false,
-          timer: 1500
+        this._snackbar.open('Usuario Creado', resp.usuario.nombre, {
+          duration: 2900,
+          panelClass: ['success-snackbar']
         });
         return resp.usuario;
       })).pipe(catchError( err => {
@@ -151,7 +148,7 @@ export class UsuarioService {
       }));
   }
 
-  actualizarusuario(usuario: Usuario) {
+  actualizarUsuario(usuario: Usuario) {
 
     let url = URL_SERVICIOS + '/usuario/' + usuario._id;
     url += '?token=' + this.token;
@@ -165,7 +162,8 @@ export class UsuarioService {
         }
 
         this._snackbar.open('Usuario Actualizado', resp.usuario.nombre, {
-          duration: 2900
+          duration: 2900,
+          panelClass: ['info-snackbar']
         });
 
         return true;
@@ -205,15 +203,9 @@ export class UsuarioService {
     return this.http.delete(url)
       .pipe(map( (resp: any) => {
         this._snackbar.open('Usuario Eliminado', resp.usuario.nombre, {
-          horizontalPosition: 'right',
-          verticalPosition: 'top',
-          duration: 2900
+          duration: 2900,
+          panelClass: ['danger-snackbar']
         });
-        // Swal.fire(
-        //   'Eliminado!',
-        //   'El usuario ' + this.usuario.nombre + ' se elimino',
-        //   'success'
-        // );
         return true;
       }));
   }

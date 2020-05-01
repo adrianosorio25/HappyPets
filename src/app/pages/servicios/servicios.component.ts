@@ -1,23 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
-
-export interface UserData {
-  id: string;
-  name: string;
-  progress: string;
-  color: string;
-}
-
-const COLORS: string[] = [
-  'maroon', 'red', 'orange', 'yellow', 'olive', 'green', 'purple', 'fuchsia', 'lime', 'teal',
-  'aqua', 'blue', 'navy', 'black', 'gray'
-];
-const NAMES: string[] = [
-  'Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack', 'Charlotte', 'Theodore', 'Isla', 'Oliver',
-  'Isabella', 'Jasper', 'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'
-];
+import { MatDialog } from '@angular/material/dialog';
+import { ServicioService } from '../../services/servicio/servicio.service';
+import { AddServiciosComponent } from './dialog/add/add-servicios.component';
+import { Servicio } from '../../models/servicio.model';
+import Swal from 'sweetalert2';
+import { EditServiciosComponent } from './dialog/edit/edit-servicios.component';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-servicios',
@@ -26,43 +14,99 @@ const NAMES: string[] = [
 })
 export class ServiciosComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'name', 'progress', 'color'];
-  dataSource: MatTableDataSource<UserData>;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  constructor() {
-    const users = Array.from({length: 100}, (_, k) => createNewUser(k + 1));
+  servicios: Servicio[] = [];
 
-    // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(users);
-  }
+  desde: number = 0;
+
+  totalRegistros: number = 0;
+
+  index: number;
+  id: number;
+
+  displayedColumns: string[] = ['nombre', 'descripcion', 'icono1', 'icono2'];
+
+  constructor(public _servicioService: ServicioService,
+              public dialog: MatDialog) {}
 
   ngOnInit(): void {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    this.cargarServicios();
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+  actualizarServicio(servicio: Servicio) {
+    this.dialog.open(EditServiciosComponent, {
+      data: { servicios: this.servicios }
+    }).afterClosed().subscribe(result => {
+      this._servicioService.cargarServicio()
+        .subscribe( resp => {
+          this.cargarServicios();
+        });
+    });
+  }
 
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
+  addDialog() {
+    this.dialog.open(AddServiciosComponent, {
+      data: { servicios: this.servicios }
+    }).afterClosed().subscribe(result => {
+      this._servicioService.cargarServicio()
+        .subscribe( resp => {
+          this.cargarServicios();
+        });
+    });
+  }
+
+  cargarServicios() {
+    this._servicioService.cargarServicio(this.desde)
+      .subscribe( (resp: any) => {
+        console.log(resp);
+        this.totalRegistros = resp.total;
+        this.servicios = resp.servicios;
+      });
+  }
+
+  cambiarDesde(valor: number) {
+    const desde = this.desde + valor;
+
+    if (desde >= this.totalRegistros) {
+      return;
     }
+
+    this.desde += valor;
+    this.cargarServicios();
+  }
+
+  buscarServicio(termino: string) {
+    if (termino.length <= 0) {
+      this.cargarServicios();
+      return;
+    }
+
+    this._servicioService.buscarServicio(termino)
+      .subscribe( (servicios: Servicio[]) => {
+        this.servicios = servicios;
+      });
+  }
+
+  borrarServicio(servicio: Servicio) {
+    Swal.fire({
+      title: '¿Esta Seguro?',
+      text: 'Esta a punto de borrar a ' + servicio.nombre,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Eliminar!'
+    }).then((borrar) => {
+      if (borrar.value) {
+        this._servicioService.borrarUsuario(servicio._id)
+          .subscribe( resp => {
+            this.cargarServicios();
+          });
+      }
+    });
   }
 
 }
 
-function createNewUser(id: number): UserData {
-  const name = NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-      NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
-
-  return {
-    id: id.toString(),
-    name,
-    progress: Math.round(Math.random() * 100).toString(),
-    color: COLORS[Math.round(Math.random() * (COLORS.length - 1))]
-  };
-}
